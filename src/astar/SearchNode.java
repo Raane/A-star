@@ -21,7 +21,6 @@ public class SearchNode implements Comparable{
 	public int compareTo(Object anotherNode) {
 		if (!(anotherNode instanceof SearchNode))
 		      throw new ClassCastException("A node was expected.");
-		SearchNode anotherNodeAsNode = (SearchNode)anotherNode;
-		return this.f-((SearchNode)anotherNodeAsNode);
+		return (int)(this.f - ((SearchNode)anotherNode).f)*1000; //multiplying by 1000 to get more exact integer sorting
 	}
 }
