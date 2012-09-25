@@ -2,7 +2,7 @@ package astar;
 
 import java.util.ArrayList;
 
-public class SearchNode {
+public class SearchNode implements Comparable{
 	State state;
 	double f;
 	double g;
@@ -14,6 +14,14 @@ public class SearchNode {
 	ArrayList<SearchNode> possParrent;
 	
 	public SearchNode() {
-		// TODO Auto-generated constructor stub
+		this.state = State.OPEN;
+	}
+
+	@Override
+	public int compareTo(Object anotherNode) {
+		if (!(anotherNode instanceof SearchNode))
+		      throw new ClassCastException("A node was expected.");
+		SearchNode anotherNodeAsNode = (SearchNode)anotherNode;
+		return this.f-((SearchNode)anotherNodeAsNode);
 	}
 }
