@@ -14,12 +14,20 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 	ArrayList<SearchNode> children;		// This is all of the explorableChildren of node
 	ArrayList<SearchNode> possParrent;	// This is all of the possible parrents of the node
 	
-	public SearchNode() {
-		this.open = true;
+	public SearchNode(SearchNode parrent, SearchNode goal) {
+		this.open = true;			// A fresh node is allways open
+		this.g = parrent.g + 1;		// All problemes I will solve have an edge length of 1 so I add 1 to the parrents g
+		this.h = calculateH(goal);	// Calculate h for the node
 	}
 	
 	
 	
+	private double calculateH(SearchNode goal) {
+		return 1;		// In here the code for the spesific problem you want to solve should be
+	}
+
+
+
 	@Override
 	public int compareTo(Object anotherNode) {
 		if (!(anotherNode instanceof SearchNode))
