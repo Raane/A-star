@@ -5,18 +5,19 @@ import java.util.Collections;
 
 public class Astar {
 	ArrayList<SearchNode> agenda;
-	//Collections.sort(agenda);
+	SearchNode goal;
 	public Astar() {
 		agenda = new ArrayList<SearchNode>();
+		goal = new SearchNode(State goalState);
 	}
 	
 	public void run(SearchNode root) {
 		agenda.add(root);
 		while(agenda.size()!=0) {
 			Collections.sort(agenda);			// Sorting the agenda
-			currentNode = agenda.remove(0);		//
-			agenda.add(e);
-			
+			SearchNode currentNode = agenda.remove(0);		//
+			if(currentNode.compareTo(go))
+			agenda.
 		}
 	}
 }

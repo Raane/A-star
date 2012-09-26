@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SearchNode implements Comparable{  // Implements comparable for sorting
 	private static final double ROUNDINGCONSTANT = 1000;
-	State state;
+	State state;						// This should contain the state of the problem
 	double f;							// This is the cost of getting to the node
 	double g;							// This is the estimated cost of getting from the node to the goal
 	double h;							// This is the sum of f & g
@@ -20,8 +20,10 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 		this.h = calculateH(goal);	// Calculate h for the node
 	}
 	
-	
-	
+	public SearchNode(State goal) {
+		// TODO Auto-generated constructor stub
+	}
+
 	private double calculateH(SearchNode goal) {
 		return 1;		// In here the code for the spesific problem you want to solve should be
 	}
