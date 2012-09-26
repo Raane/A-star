@@ -1,5 +1,5 @@
 package astar;
 
-public enum State {
-	
+public class State {
+	// This class have to be custom made for a spesific problem.
 }
