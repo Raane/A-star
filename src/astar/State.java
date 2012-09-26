@@ -32,4 +32,10 @@ public class State {
 	public int getStateArrayCell(int cell) {
 		return stateArray[cell];
 	}
+	public double stateResult() {
+		double numerator = 1000*stateArray[0]+100*stateArray[1]+10*stateArray[2]+stateArray[3];							// Calculates the numerator
+		double denominator = 10000*stateArray[4]+1000*stateArray[5]+100*stateArray[6]+10*stateArray[7]+stateArray[8];	// Calculates the denominator
+		return numerator/denominator;
+		
+	}
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class SearchNode implements Comparable{  // Implements comparable for sorting
 	private static final double ROUNDINGCONSTANT = 1000;
 	private static final double STEPCOST = 1;
-	State state;						// This should contain the state of the problem
+	private State state;						// This should contain the state of the problem
 	private double f;							// This is the cost of getting to the node
 	private double g;							// This is the estimated cost of getting from the node to the goal
 	private double h = -1;							// This is the sum of f & g
@@ -16,11 +16,19 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 	private ArrayList<SearchNode> children;		// This is all of the explorableChildren of node
 	private ArrayList<SearchNode> possParrent;	// This is all of the possible parrents of the node
 	
-	public SearchNode(SearchNode parrent, State goalState) {
+	public SearchNode(SearchNode parrent, int a, int b, State goalState) {	// Creates a node as the parrent, but with a and b swaped
 		this.open = true;			// A fresh node is allways open
 		this.g = parrent.g + 1;		// the cost to get to a node is more the cost of the edge from the parrent plus the cost to get to the parrent
 		this.h = calculateH(goalState);	// Calculate h for the node
 		this.visited = false;
+		this.state = new State(parrent.getState(),a,b);
+	}
+	public SearchNode(State state, State goalState) {
+		this.open = true;
+		g = 0;
+		h = calculateH(goalState);
+		this.visited = false;
+		this.state = state;
 	}
 	
 	public boolean isVisited() {
@@ -91,7 +99,7 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 	}
 	
 	private double calculateH(State goalstate) {
-		return 1;		// In here the code for the spesific problem you want to solve should be
+		return Math.abs(state.stateResult()-goalstate.stateResult());	// In here the code for the spesific problem you want to solve should be
 	}
 
 	

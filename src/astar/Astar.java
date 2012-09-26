@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Astar {
-	private static final State GOALSTATE = null; 	// This is where the goalstate should be coded in
+	static int[] startingArray = {1,2,3,4,5,6,7,8,9};
+	private static final State GOALSTATE = new State(goalArray); 	// This is where the goalstate should be coded in
 	private static final State STARTINGSTATE = null; // This is where the startingstate should be coded in
 
 	private SearchNode goal;					// This store the goal
