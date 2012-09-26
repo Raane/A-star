@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SearchNode implements Comparable{  // Implements comparable for sorting
 	private static final double ROUNDINGCONSTANT = 1000;
-	private static final double STEPCOST = 1;
+	private static final double STEPCOST = 0;
 	private State state;						// This should contain the state of the problem
 	private double f;							// This is the cost of getting to the node
 	private double g;							// This is the estimated cost of getting from the node to the goal
@@ -22,7 +22,7 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 		this.g = parrent.g + 1;		// the cost to get to a node is more the cost of the edge from the parrent plus the cost to get to the parrent
 		this.h = calculateH();	// Calculate h for the node
 		this.visited = false;
-		calculateChildren();
+//		calculateChildren();
 	}
 	public SearchNode(State state) {
 		this.open = true;
@@ -30,7 +30,7 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 		this.state = state;
 		h = calculateH();
 		this.visited = false;
-		calculateChildren();
+//		calculateChildren();
 	}
 	private void calculateChildren() {
 		children = new ArrayList<SearchNode>();
@@ -88,6 +88,9 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 	}
 
 	public ArrayList<SearchNode> getChildren() {
+		if(children==null) {
+			calculateChildren();
+		}
 		return children;
 	}
 

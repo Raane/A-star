@@ -28,10 +28,11 @@ public class Astar {
 		while(agenda.size()!=0) {				// This is the main agenda loop
 			Collections.sort(agenda);			// Sorting the agenda
 			SearchNode currentNode = agenda.remove(0);		// After sorting we can just look at the best looking candidate
+			System.out.println("Evaluating Solution " + currentNode.getState());
 			if(currentNode.getState().equals(GOALSTATE)) {
 				return currentNode;								// return the first found solution
 			}
-			for(SearchNode closedNode:visitedNodes) {
+			for(SearchNode closedNode:closedNodes) {
 				if(currentNode.equals(closedNode) && !currentNode.equals(closedNode)) {	// Checks if there is another different node with the same state
 					closedNode.addPossibleParrents(currentNode.getPossParrent());	// Lets the new identical node bubble up the graph
 					currentNode = closedNode;	// Sets the node we are working on to the new better and equal node
@@ -42,10 +43,7 @@ public class Astar {
 			for(SearchNode child:currentNode.getChildren()) {				
 				agenda.add(child);								// This loop adds the children of the current node to the agenda
 			}
-			if(visitedNodes.containsAll(currentNode.getChildren())) {
-				agenda.remove(currentNode);						// If all the children have been visited we will never have to return to the current node in the agenda loop
-			}
-			if(!currentNode.isVisited()) visitedNodes.add(currentNode);  // TODO remove this, it's not needed
+			closedNodes.add(currentNode);
 		}
 		return null;
 	}
