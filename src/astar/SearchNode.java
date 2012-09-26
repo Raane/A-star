@@ -79,9 +79,15 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 		return possParrent;
 	}
 
-	public void addPossibleParrent(SearchNode possParrent) {
-		this.possParrent.add(possParrent);
-		updateG(possParrent.getG());
+	public void addPossibleParrents(ArrayList<SearchNode> possParrent) {
+		this.possParrent.addAll(possParrent);
+		SearchNode bestParrent = possParrent.get(0);
+		for(int i=0;i<possParrent.size();i++) {
+			if(possParrent.get(i).getG()>bestParrent.getG()) {
+				bestParrent = possParrent.get(i);
+			}
+		}
+		updateG(bestParrent.getG());
 	}
 	
 	private double calculateH(SearchNode goal) {
@@ -91,7 +97,7 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 	
 
 	@Override
-	public int compareTo(Object anotherNode) {
+	public int compareTo(Object anotherNode) {	// This makes the list sortable
 		if (!(anotherNode instanceof SearchNode))
 		      throw new ClassCastException("A node was expected.");
 		return (int)((this.f - ((SearchNode)anotherNode).f)*ROUNDINGCONSTANT); //multiplying by a rounding constant to get more exact integer sorting
