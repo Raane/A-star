@@ -83,6 +83,9 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 	}
 
 	public void updateG(double g) {
+		
+		//TODO This should probably happen when a new possibleParrent is added.
+		
 		// If the g is higher than the new g we update the g and all it's childrens g 	
 		if(this.g>g) {								
 			this.g=g;
