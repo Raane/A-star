@@ -38,7 +38,7 @@ public class Astar {
 					break;	// Exits as there should never be identical states in the nodes allready in the visited nodes
 				}
 			}
-			System.out.println(currentNode.getState());
+			System.out.println(currentNode.getChildren());
 			for(SearchNode child:currentNode.getChildren()) {				
 				agenda.add(child);								// This loop adds the children of the current node to the agenda
 			}
@@ -53,5 +53,6 @@ public class Astar {
 	public static void main(String[] args) {
 		Astar astar = new Astar();
 		SearchNode solution = astar.run(astar.start);
+		System.out.println(solution.getState());
 	}
 }
