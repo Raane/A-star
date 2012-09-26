@@ -4,7 +4,7 @@ import java.util.Collections;
 
 public class State {
 	// This class have to be custom made for a spesific problem.
-	private static final int PROBLEMSIZE = 9;
+	public static final int PROBLEMSIZE = 9;
 	private int[] stateArray = new int[PROBLEMSIZE];
 	private boolean goal = false;
 	private double goalfraction;
@@ -46,5 +46,11 @@ public class State {
 			double denominator = 10000*stateArray[4]+1000*stateArray[5]+100*stateArray[6]+10*stateArray[7]+stateArray[8];	// Calculates the denominator
 			return numerator/denominator;
 		}
+	}
+	@Override
+	public String toString() {
+		String returnString = "";
+		for(int element:stateArray) returnString += Integer.toString(element) + " ";
+		return returnString;
 	}
 }
