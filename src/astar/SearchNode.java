@@ -22,6 +22,7 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 		this.h = calculateH(goalState);	// Calculate h for the node
 		this.visited = false;
 		this.state = new State(parrent.getState(),a,b);
+		calculateChildren();
 	}
 	public SearchNode(State state, State goalState) {
 		this.open = true;
@@ -29,6 +30,17 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 		h = calculateH(goalState);
 		this.visited = false;
 		this.state = state;
+		calculateChildren();
+	}
+	private void calculateChildren() {
+		children = new ArrayList<SearchNode>();
+		for(int i=0;i<State.PROBLEMSIZE;i++) {
+			for(int j=0;j<State.PROBLEMSIZE;j++) {
+				if(i!=j) {
+					children.add(new SearchNode(this, i, j, Astar.GOALSTATE));
+				}
+			}
+		}
 	}
 	
 	public boolean isVisited() {

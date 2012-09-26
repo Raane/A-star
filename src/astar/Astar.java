@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class Astar {
 	static int[] startingArray = {1,2,3,4,5,6,7,8,9};
-	private static final State GOALSTATE = new State(1/2); 	// This is where the goalstate should be coded in
+	public static final State GOALSTATE = new State(1/2); 	// This is where the goalstate should be coded in
 	private static final State STARTINGSTATE = new State(startingArray); // This is where the startingstate should be coded in
 
 	private SearchNode goal;					// This store the goal
@@ -38,6 +38,7 @@ public class Astar {
 					break;	// Exits as there should never be identical states in the nodes allready in the visited nodes
 				}
 			}
+			System.out.println(currentNode.getState());
 			for(SearchNode child:currentNode.getChildren()) {				
 				agenda.add(child);								// This loop adds the children of the current node to the agenda
 			}
@@ -47,5 +48,10 @@ public class Astar {
 			if(!currentNode.isVisited()) visitedNodes.add(currentNode);  // TODO remove this, it's not needed
 		}
 		return null;
+	}
+	
+	public static void main(String[] args) {
+		Astar astar = new Astar();
+		SearchNode solution = astar.run(astar.start);
 	}
 }
