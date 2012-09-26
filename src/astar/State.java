@@ -11,22 +11,25 @@ public class State {
 		this.stateArray = stateArray;
 	}
 	public State(State parrent, int a, int b) {
-		this.stateArray = stateArray;
+		this.stateArray = parrent.getStateArray();
 		int temp = stateArray[a];
 		stateArray[a] = stateArray[b];
 		stateArray[b] = temp;
 	}
 	
+	public int[] getStateArray() {
+		return stateArray;
+	}
 	@Override
 	public boolean equals(Object anotherState) {
-		boolean equal = true;
-		for(int i=0;i<PROBLEMSIZE;i++) {
-			if(((State) anotherState).getStateArrayCell(i)==stateArray[i])
+		for(int i=0;i<PROBLEMSIZE;i++) {										// Check each cell against each other
+			if(((State) anotherState).getStateArrayCell(i)!=stateArray[i]) {
+				return false;													// Return false when an inequality is found
+			}
 		}
-		return equal;		// This should return if the state is the same 
+		return true;															// Return true if the for loop didn't find an inequality 
 	}
-	private int getStateArrayCell(int cell) {
-		// TODO Auto-generated method stub
+	public int getStateArrayCell(int cell) {
 		return stateArray[cell];
 	}
 }
