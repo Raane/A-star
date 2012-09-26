@@ -6,6 +6,8 @@ public class State {
 	// This class have to be custom made for a spesific problem.
 	private static final int PROBLEMSIZE = 9;
 	private int[] stateArray = new int[PROBLEMSIZE];
+	private boolean goal = false;
+	private double goalfraction;
 	
 	public State(int[] stateArray) {
 		this.stateArray = stateArray;
@@ -15,6 +17,10 @@ public class State {
 		int temp = stateArray[a];
 		stateArray[a] = stateArray[b];
 		stateArray[b] = temp;
+	}
+	public State(double goalfraction) {
+		goal = true;
+		this.goalfraction = goalfraction; 
 	}
 	
 	public int[] getStateArray() {
@@ -33,9 +39,12 @@ public class State {
 		return stateArray[cell];
 	}
 	public double stateResult() {
-		double numerator = 1000*stateArray[0]+100*stateArray[1]+10*stateArray[2]+stateArray[3];							// Calculates the numerator
-		double denominator = 10000*stateArray[4]+1000*stateArray[5]+100*stateArray[6]+10*stateArray[7]+stateArray[8];	// Calculates the denominator
-		return numerator/denominator;
-		
+		if(goal) {
+			return goalfraction;
+		} else {			
+			double numerator = 1000*stateArray[0]+100*stateArray[1]+10*stateArray[2]+stateArray[3];							// Calculates the numerator
+			double denominator = 10000*stateArray[4]+1000*stateArray[5]+100*stateArray[6]+10*stateArray[7]+stateArray[8];	// Calculates the denominator
+			return numerator/denominator;
+		}
 	}
 }

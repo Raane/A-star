@@ -5,8 +5,8 @@ import java.util.Collections;
 
 public class Astar {
 	static int[] startingArray = {1,2,3,4,5,6,7,8,9};
-	private static final State GOALSTATE = new State(goalArray); 	// This is where the goalstate should be coded in
-	private static final State STARTINGSTATE = null; // This is where the startingstate should be coded in
+	private static final State GOALSTATE = new State(1/2); 	// This is where the goalstate should be coded in
+	private static final State STARTINGSTATE = new State(startingArray); // This is where the startingstate should be coded in
 
 	private SearchNode goal;					// This store the goal
 	private SearchNode start;					// This is the startingNode
@@ -20,6 +20,7 @@ public class Astar {
 		goal = new SearchNode(GOALSTATE);
 		closedNodes = new ArrayList<SearchNode>();
 		visitedNodes = new ArrayList<SearchNode>();
+		start = new SearchNode(STARTINGSTATE);
 	}
 	
 	public SearchNode run(SearchNode root) {
