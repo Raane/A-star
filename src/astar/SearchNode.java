@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class SearchNode implements Comparable{  // Implements comparable for sorting
 	private static final double ROUNDINGCONSTANT = 1000;
 	State state;						// This should contain the state of the problem
-	double f;							// This is the cost of getting to the node
-	double g;							// This is the estimated cost of getting from the node to the goal
-	double h;							// This is the sum of f & g
-	boolean open;						// This is the status (open/closed) of the node
-	boolean solution;					// This indicates if the node is a solution
-	SearchNode parrent;					// This indicates the best known parrent
-	ArrayList<SearchNode> children;		// This is all of the explorableChildren of node
-	ArrayList<SearchNode> possParrent;	// This is all of the possible parrents of the node
+	private double f;							// This is the cost of getting to the node
+	private double g;							// This is the estimated cost of getting from the node to the goal
+	private double h;							// This is the sum of f & g
+	private boolean open;						// This is the status (open/closed) of the node
+	private boolean solution;					// This indicates if the node is a solution
+	private SearchNode parrent;					// This indicates the best known parrent
+	private ArrayList<SearchNode> children;		// This is all of the explorableChildren of node
+	private ArrayList<SearchNode> possParrent;	// This is all of the possible parrents of the node
 	
 	public SearchNode(SearchNode parrent, SearchNode goal) {
 		this.open = true;			// A fresh node is allways open
@@ -21,7 +21,51 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 	}
 	
 	public SearchNode(State goal) {
-		// TODO Auto-generated constructor stub
+		this.state = goal;
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
+
+	public SearchNode getParrent() {
+		return parrent;
+	}
+
+	public void setParrent(SearchNode parrent) {
+		this.parrent = parrent;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public double getF() {
+		return f;
+	}
+
+	public double getG() {
+		return g;
+	}
+
+	public double getH() {
+		return h;
+	}
+
+	public boolean isSolution() {
+		return solution;
+	}
+
+	public ArrayList<SearchNode> getChildren() {
+		return children;
+	}
+
+	public ArrayList<SearchNode> getPossParrent() {
+		return possParrent;
 	}
 
 	private double calculateH(SearchNode goal) {

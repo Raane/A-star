@@ -16,7 +16,7 @@ public class Astar {
 		while(agenda.size()!=0) {
 			Collections.sort(agenda);			// Sorting the agenda
 			SearchNode currentNode = agenda.remove(0);		//
-			if(currentNode.compareTo(go))
+			if(currentNode.getState().equals(goal.getState()));
 			agenda.
 		}
 	}
