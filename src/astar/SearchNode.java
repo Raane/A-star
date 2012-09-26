@@ -18,18 +18,18 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 	
 	public SearchNode(SearchNode parrent, int a, int b, State goalState) {	// Creates a node as the parrent, but with a and b swaped
 		this.open = true;			// A fresh node is allways open
-		this.g = parrent.g + 1;		// the cost to get to a node is more the cost of the edge from the parrent plus the cost to get to the parrent
-		this.h = calculateH(goalState);	// Calculate h for the node
-		this.visited = false;
 		this.state = new State(parrent.getState(),a,b);
+		this.g = parrent.g + 1;		// the cost to get to a node is more the cost of the edge from the parrent plus the cost to get to the parrent
+		this.h = calculateH();	// Calculate h for the node
+		this.visited = false;
 		calculateChildren();
 	}
-	public SearchNode(State state, State goalState) {
+	public SearchNode(State state) {
 		this.open = true;
 		g = 0;
-		h = calculateH(goalState);
-		this.visited = false;
 		this.state = state;
+		h = calculateH();
+		this.visited = false;
 		calculateChildren();
 	}
 	private void calculateChildren() {
@@ -49,10 +49,6 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 
 	public void setVisited(boolean visited) {
 		this.visited = visited;
-	}
-
-	public SearchNode(State goal) {
-		this.state = goal;
 	}
 
 	public boolean isOpen() {
@@ -110,8 +106,8 @@ public class SearchNode implements Comparable{  // Implements comparable for sor
 		updateParrent(parrent);									// Updates the best parrent
 	}
 	
-	private double calculateH(State goalstate) {
-		return Math.abs(state.stateResult()-goalstate.stateResult());	// In here the code for the spesific problem you want to solve should be
+	private double calculateH() {
+		return Math.abs(state.stateResult()-Astar.GOALSTATE.stateResult());	// In here the code for the spesific problem you want to solve should be
 	}
 
 	
