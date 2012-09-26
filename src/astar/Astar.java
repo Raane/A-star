@@ -21,6 +21,13 @@ public class Astar {
 			if(currentNode.getState().equals(goal.getState())) {
 				return currentNode;
 			}
+			for(SearchNode closedNode:closedNodes) {
+				if(currentNode.equals(closedNode)) {
+					closedNode.updateG(currentNode.getG());
+					currentNode = closedNode;
+					break;
+				}
+			}
 			for(SearchNode child:currentNode.getChildren()) {				
 				agenda.add(child);
 			}
